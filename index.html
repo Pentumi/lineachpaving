@@ -3,104 +3,264 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lineach Paving | Professional Paving Services Ireland</title>
+  <title>Lineach Paving</title>
+  <link rel="icon" href="https://lineach.com/favicon.ico" type="image/x-icon">
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 0; line-height: 1.6; color: #222; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    header { background: #111; color: white; padding: 20px 0; }
-    nav { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.8rem; font-weight: 700; }
-    nav a { color: white; text-decoration: none; margin-left: 30px; }
-    .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/id/1018/2000/1200') center/cover no-repeat; height: 100vh; display: flex; align-items: center; color: white; }
-    .hero-content h1 { font-size: 3.2rem; margin-bottom: 10px; }
-    .hero-content p { font-size: 1.3rem; margin-bottom: 30px; }
-    .btn { background: #c8102e; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block; }
-    section { padding: 80px 0; }
-    h2 { font-size: 2.2rem; margin-bottom: 30px; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-    .service-card { background: #f8f8f8; padding: 30px; border-radius: 8px; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
-    .gallery img { width: 100%; border-radius: 8px; }
-    footer { background: #111; color: #aaa; padding: 40px 0; text-align: center; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=SF+Pro+Display:wght@400;500;600&display=swap');
+
+    :root {
+      --apple-black: #1d1d1f;
+      --apple-gray: #86868b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+      color: #1d1d1f;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+      padding: 14px 0;
+      border-bottom: 1px solid #f5f5f7;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links a {
+      color: #1d1d1f;
+      text-decoration: none;
+      margin-left: 40px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #f5f5f7;
+      padding-top: 60px;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: -2.5px;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 24px;
+      color: #86868b;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .btn {
+      background: #0071e3;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 500;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #0077ed;
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section {
+      padding: 120px 0;
+    }
+
+    h2 {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    /* Services */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .service {
+      padding: 40px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+
+    .service h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .service p {
+      color: #86868b;
+      font-size: 17px;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Contact */
+    .contact {
+      background: #f5f5f7;
+      text-align: center;
+    }
+
+    .contact p {
+      font-size: 21px;
+      color: #1d1d1f;
+      margin-bottom: 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 0 40px;
+      color: #86868b;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
-<header>
+<!-- Navigation -->
+<nav>
   <div class="container">
-    <nav>
+    <div class="nav-content">
       <div class="logo">Lineach Paving</div>
-      <div>
+      <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </div>
-    </nav>
+    </div>
   </div>
-</header>
+</nav>
 
+<!-- Hero -->
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1>Expert Paving Services<br>Across Ireland</h1>
-      <p>Driveways • Patios • Car Parks • Commercial Surfacing</p>
-      <a href="#contact" class="btn">Get a Free Quote</a>
+      <h1>Expert paving.<br>Exceptional results.</h1>
+      <p>Premium driveways, patios and commercial surfacing across Ireland.</p>
+      <a href="#contact" class="btn">Get a free quote</a>
     </div>
   </div>
 </section>
 
+<!-- Services -->
 <section id="services">
   <div class="container">
-    <h2>Our Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="service">
         <h3>Driveways</h3>
-        <p>Block paving, tarmac and resin-bound driveways with excellent drainage and long-lasting finishes.</p>
+        <p>Block paving, tarmac and resin-bound driveways built to last with perfect drainage.</p>
       </div>
-      <div class="service-card">
-        <h3>Patios & Walkways</h3>
-        <p>Beautiful garden patios, pathways and outdoor living spaces in natural stone or concrete.</p>
+      <div class="service">
+        <h3>Patios & Gardens</h3>
+        <p>Beautiful natural stone and concrete patios designed for outdoor living.</p>
       </div>
-      <div class="service-card">
-        <h3>Commercial & Car Parks</h3>
-        <p>Heavy-duty surfacing for retail parks, industrial sites, schools and housing estates.</p>
+      <div class="service">
+        <h3>Commercial</h3>
+        <p>Heavy-duty car parks, forecourts and industrial surfacing.</p>
       </div>
-      <div class="service-card">
-        <h3>Repairs & Maintenance</h3>
-        <p>Crack repairs, re-surfacing, drainage fixes and full restoration of existing paving.</p>
+      <div class="service">
+        <h3>Repairs & Restoration</h3>
+        <p>Crack repair, re-surfacing and full restoration of existing paving.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="projects" style="background:#f8f8f8;">
+<!-- Projects -->
+<section id="projects">
   <div class="container">
-    <h2>Recent Projects</h2>
-    <div class="gallery">
-      <img src="https://picsum.photos/id/1015/600/400" alt="Driveway project">
-      <img src="https://picsum.photos/id/1033/600/400" alt="Patio project">
-      <img src="https://picsum.photos/id/160/600/400" alt="Commercial car park">
-      <img src="https://picsum.photos/id/201/600/400" alt="Residential driveway">
+    <h2>Featured Projects</h2>
+    <div class="gallery-grid">
+      <img src="https://picsum.photos/id/1018/800/600" alt="Modern driveway">
+      <img src="https://picsum.photos/id/1033/800/600" alt="Stone patio">
+      <img src="https://picsum.photos/id/160/800/600" alt="Commercial car park">
+      <img src="https://picsum.photos/id/201/800/600" alt="Residential paving">
     </div>
   </div>
 </section>
 
-<section id="contact">
+<!-- Contact -->
+<section id="contact" class="contact">
   <div class="container">
-    <h2>Get in Touch</h2>
-    <p style="max-width:600px;">Ready to start your paving project? Contact us today for a free, no-obligation quote.</p>
-    
-    <p><strong>Phone:</strong> 087 123 4567<br>
-    <strong>Email:</strong> info@lineachpaving.com<br>
-    <strong>Service Areas:</strong> Dublin, Meath, Kildare, Wicklow & surrounding counties</p>
-
-    <a href="mailto:info@lineachpaving.com" class="btn">Email Us for a Quote</a>
+    <h2>Let’s build something great.</h2>
+    <p>
+      <strong>Phone:</strong> 087 919 9059<br>
+      <strong>Email:</strong> dean@lineach.com
+    </p>
+    <a href="mailto:dean@lineach.com" class="btn">Email us</a>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <p>© 2026 Lineach Paving. Professional paving services across Ireland.</p>
+    <p>© 2026 Lineach Paving • Professional paving services across Ireland</p>
   </div>
 </footer>
 
