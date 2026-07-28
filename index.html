@@ -379,6 +379,82 @@
   </div>
 </section>
 
+<section id="quote" class="bg-white py-20">
+  <div class="container">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-zinc-100 px-4 py-1 rounded-full mb-4">
+        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+        <span class="text-sm font-medium text-emerald-600">Instant Estimate</span>
+      </div>
+      <h2 class="text-5xl font-semibold tracking-tighter text-black">Get an indicative quote</h2>
+      <p class="text-xl text-zinc-500 mt-3 max-w-md mx-auto">Transparent pricing based on current Irish market rates (2026)</p>
+    </div>
+
+    <!-- Calculator Form -->
+    <div class="max-w-4xl mx-auto bg-zinc-50 rounded-3xl p-8 md:p-10 border border-zinc-200">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Form Fields -->
+        <div class="space-y-6">
+          <!-- Project Type -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">Project Type</label>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 bg-white border border-zinc-200 px-4 py-3 rounded-2xl cursor-pointer">
+                <input type="radio" name="projectType" value="Driveway" checked class="accent-black">
+                <span>Driveway</span>
+              </label>
+              <label class="flex items-center gap-3 bg-white border border-zinc-200 px-4 py-3 rounded-2xl cursor-pointer">
+                <input type="radio" name="projectType" value="Patio" class="accent-black">
+                <span>Patio</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Area -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">Area (m²)</label>
+            <input type="range" id="area" min="10" max="250" step="5" value="45" class="w-full accent-black" oninput="updateQuote()">
+            <div class="flex justify-between text-sm mt-1">
+              <div>10 m²</div>
+              <div id="areaValue">45 m²</div>
+              <div>250 m²</div>
+            </div>
+          </div>
+
+          <!-- Material -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">Material</label>
+            <select id="material" onchange="updateQuote()" class="w-full bg-white border border-zinc-200 rounded-2xl px-4 py-3">
+              <option value="65">Gravel (with borders) — €65/m²</option>
+              <option value="95">Tarmac – Black — €95/m²</option>
+              <option value="105" selected>Block Paving — €105/m²</option>
+              <option value="120">Resin Bound — €120/m²</option>
+              <option value="135">Granite — €135/m²</option>
+            </select>
+          </div>
+
+          <!-- Region -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">Region</label>
+            <select id="region" onchange="updateQuote()" class="w-full bg-white border border-zinc-200 rounded-2xl px-4 py-3">
+              <option value="1.08">Dublin & Greater Dublin</option>
+              <option value="1.00" selected>Rest of Leinster</option>
+              <option value="0.93">Munster / Connacht / Ulster</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="bg-white border border-zinc-200 rounded-3xl p-8">
+          <div id="quoteResult">
+            <div class="text-center py-8 text-zinc-400">Fill in the details to see your estimate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <p>© 2026 Lineach Paving • Professional paving services across Ireland</p>
