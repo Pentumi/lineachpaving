@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instant Quote Estimator | Lineach Paving</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=SF+Pro+Display:wght@400;500;600&display=swap');
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    }
+    
+    .quote-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .range-bar {
+      height: 6px;
+      background: linear-gradient(to right, #22c55e, #eab308, #ef4444);
+      border-radius: 9999px;
+    }
+    
+    .material-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .material-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+    
+    .disclaimer {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white">
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 bg-zinc-900 px-4 py-1.5 rounded-full mb-4">
+        <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+        <span class="text-sm font-medium text-emerald-400">Instant Estimate</span>
+      </div>
+      <h1 class="text-5xl font-semibold tracking-tighter">Get an indicative quote</h1>
+      <p class="text-xl text-zinc-400 mt-3 max-w-md mx-auto">Transparent pricing based on current Irish market rates (2026)</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+      
+      <!-- Form -->
+      <div class="lg:col-span-3 bg-zinc-900 rounded-3xl p-8">
+        <h2 class="text-2xl font-semibold mb-6">Project Details</h2>
+        
+        <div class="space-y-6">
+          <!-- Project Type -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-400 mb-2">Project Type</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <label class="flex items-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors px-4 py-3 rounded-2xl cursor-pointer">
+                <input type="radio" name="projectType" value="Driveway" class="accent-white" checked>
+                <span>Driveway</span>
+              </label>
+              <label class="flex items-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors px-4 py-3 rounded-2xl cursor-pointer">
+                <input type="radio" name="projectType" value="Patio" class="accent-white">
+                <span>Patio</span>
+              </label>
+              <label class="flex items-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors px-4 py-3 rounded-2xl cursor-pointer">
+                <input type="radio" name="projectType" value="Path" class="accent-white">
+                <span>Path</span>
+              </label>
+              <label class="flex items-center gap-3 bg-zinc-800 hover:bg-zinc-700 transition-colors px-4 py-3 rounded-2xl cursor-pointer">
+                <input type="radio" name="projectType" value="Other" class="accent-white">
+                <span>Other</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Area -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-400 mb-2">Area (m²)</label>
+            <div class="flex items-center gap-4">
+              <input type="range" id="area" min="10" max="250" step="5" value="45" 
+                     class="flex-1 accent-white" oninput="calculateQuote()">
+              <div class="w-20 text-right">
+                <input type="number" id="areaValue" value="45" 
+                       class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-center"
+                       oninput="calculateQuote()">
+              </div>
+            </div>
+            <div class="text-xs text-zinc-500 mt-1">Minimum 10 m² • Maximum recommended 250 m²</div>
+          </div>
+
+          <!-- Material -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-400 mb-2">Material</label>
+            <select id="material" onchange="calculateQuote()" 
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-4 py-3 text-white">
+              <option value="65">Gravel (with borders) — €65/m²</option>
+              <option value="95">Tarmac – Black — €95/m²</option>
+              <option value="125">Tarmac – Coloured / Red — €125/m²</option>
+              <option value="90">Standard Concrete — €90/m²</option>
+              <option value="115">Imprinted / Patterned Concrete — €115/m²</option>
+              <option value="105" selected>Block Paving / Cobblelock (standard) — €105/m²</option>
+              <option value="115">Block Paving – Granite finish — €115/m²</option>
+              <option value="120">Resin Bound (new base) — €120/m²</option>
+              <option value="95">Resin Bound (overlay) — €95/m²</option>
+              <option value="125">Sandstone / Limestone — €125/m²</option>
+              <option value="135">Granite — €135/m²</option>
+              <option value="145">Porcelain — €145/m²</option>
+              <option value="140">Quartz / High-end stone — €140/m²</option>
+            </select>
+          </div>
+
+          <!-- Region -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-400 mb-2">Region</label>
+            <select id="region" onchange="calculateQuote()" 
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-4 py-3 text-white">
+              <option value="1.08">Dublin & Greater Dublin</option>
+              <option value="1.00" selected>Rest of Leinster</option>
+              <option value="0.93">Munster</option>
+              <option value="0.93">Connacht</option>
+              <option value="0.93">Ulster</option>
+            </select>
+          </div>
+
+          <!-- Existing Surface -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-400 mb-2">Existing Surface</label>
+            <select id="siteCondition" onchange="calculateQuote()" 
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-4 py-3 text-white">
+              <option value="1.20">New dig / soft ground / waste heavy</option>
+              <option value="1.00" selected>Standard dig</option>
+              <option value="0.85">Overlay on sound existing surface</option>
+              <option value="1.15">Difficult access / restricted site</option>
+            </select>
+          </div>
+
+          <!-- Design Level -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-400 mb-2">Design Complexity</label>
+            <select id="complexity" onchange="calculateQuote()" 
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-4 py-3 text-white">
+              <option value="1.00" selected>Simple (rectangular / standard)</option>
+              <option value="1.10">Moderate (curves / borders)</option>
+              <option value="1.22">Complex (patterns, multi-material, steps)</option>
+            </select>
+          </div>
+
+          <!-- Extras -->
+          <div>
+            <label class="block text-sm font-medium text-zinc-400 mb-3">Optional Extras</label>
+            <div class="space-y-2.5">
+              <label class="flex items-center justify-between bg-zinc-800 px-4 py-3 rounded-2xl cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" id="edging" onchange="calculateQuote()" class="accent-white w-4 h-4">
+                  <span>Kerbing / Edging</span>
+                </div>
+                <span class="text-sm text-zinc-400">€40 per metre</span>
+              </label>
+              
+              <label class="flex items-center justify-between bg-zinc-800 px-4 py-3 rounded-2xl cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" id="drainage" onchange="calculateQuote()" class="accent-white w-4 h-4">
+                  <span>Drainage Channel</span>
+                </div>
+                <span class="text-sm text-zinc-400">€75 per metre</span>
+              </label>
+              
+              <label class="flex items-center justify-between bg-zinc-800 px-4 py-3 rounded-2xl cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" id="sealing" onchange="calculateQuote()" class="accent-white w-4 h-4">
+                  <span>Sealing (recommended)</span>
+                </div>
+                <span class="text-sm text-zinc-400">€10/m²</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="lg:col-span-2">
+        <div class="bg-zinc-900 rounded-3xl p-8 sticky top-6">
+          <h3 class="text-xl font-semibold mb-6">Your Estimate</h3>
+          
+          <div id="results" class="hidden">
+            <!-- Populated by JS -->
+          </div>
+          
+          <div id="emptyState" class="text-center py-8">
+            <div class="text-zinc-500 text-sm">Fill in the details on the left to see your indicative range</div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="mt-8 pt-6 border-t border-zinc-800">
+            <div class="disclaimer text-zinc-400">
+              This is an <span class="font-medium text-white">automated estimate only</span>. 
+              A free site survey is required for an accurate fixed quote. 
+              Prices include 13.5% VAT where applicable for supply-and-install works.
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button onclick="submitQuote()"
+                  class="mt-6 w-full bg-white text-black font-semibold py-4 rounded-2xl hover:bg-zinc-200 transition-colors">
+            Book Free Site Survey
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calculateQuote() {
+      const area = parseFloat(document.getElementById('areaValue').value) || 45;
+      const materialRate = parseFloat(document.getElementById('material').value);
+      const regionMult = parseFloat(document.getElementById('region').value);
+      const siteMult = parseFloat(document.getElementById('siteCondition').value);
+      const complexityMult = parseFloat(document.getElementById('complexity').value);
+      
+      // Size multiplier
+      let sizeMult = 1.0;
+      if (area < 30) sizeMult = 1.20;
+      else if (area <= 60) sizeMult = 1.00;
+      else if (area <= 100) sizeMult = 0.95;
+      else sizeMult = 0.90;
+
+      // Base calculation
+      let base = materialRate * area * sizeMult * siteMult * complexityMult * regionMult;
+
+      // Minimum job value
+      if (base < 2200) base = 2200;
+
+      // Extras
+      let extras = 0;
+      if (document.getElementById('edging').checked) extras += 40 * 8; // assume 8m average
+      if (document.getElementById('drainage').checked) extras += 75 * 6;
+      if (document.getElementById('sealing').checked) extras += 10 * area;
+
+      const total = base + extras;
+
+      // ±15% range
+      const low = Math.round(total * 0.85);
+      const mid = Math.round(total);
+      const high = Math.round(total * 1.15);
+
+      // Display results
+      const resultsDiv = document.getElementById('results');
+      const emptyState = document.getElementById('emptyState');
+      
+      emptyState.classList.add('hidden');
+      resultsDiv.classList.remove('hidden');
+      resultsDiv.innerHTML = `
+        <div class="space-y-6">
+          <!-- Range -->
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <div class="text-emerald-400 font-medium">Low</div>
+              <div class="text-amber-400 font-medium">Mid</div>
+              <div class="text-red-400 font-medium">High</div>
+            </div>
+            <div class="range-bar mb-3"></div>
+            <div class="flex justify-between text-2xl font-semibold tracking-tighter">
+              <div>€${low.toLocaleString()}</div>
+              <div>€${mid.toLocaleString()}</div>
+              <div>€${high.toLocaleString()}</div>
+            </div>
+          </div>
+
+          <div class="text-xs text-zinc-400">
+            Indicative range based on current market rates (2026). 
+            Final price subject to site survey.
+          </div>
+
+          <div class="pt-4 border-t border-zinc-800 text-xs text-zinc-400 space-y-1">
+            <div>Base rate: €${materialRate}/m² × ${area} m²</div>
+            <div>Multipliers applied: Size (${sizeMult}) • Site (${siteMult}) • Complexity (${complexityMult}) • Region (${regionMult})</div>
+            ${extras > 0 ? `<div>Extras included: €${extras}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function submitQuote() {
+      const area = document.getElementById('areaValue').value;
+      const material = document.getElementById('material').options[document.getElementById('material').selectedIndex].text;
+      
+      // In production this would submit via Netlify Forms
+      alert(`Thank you. Your quote request for ${area}m² of ${material} has been received. We will contact you within 24 hours to arrange a free site survey.`);
+    }
+
+    // Live update listeners
+    document.getElementById('area').addEventListener('input', function() {
+      document.getElementById('areaValue').value = this.value;
+      calculateQuote();
+    });
+    
+    document.getElementById('areaValue').addEventListener('input', function() {
+      document.getElementById('area').value = this.value;
+      calculateQuote();
+    });
+
+    // Initial calculation
+    window.onload = function() {
+      document.getElementById('areaValue').value = 45;
+      calculateQuote();
+    }
+  </script>
+</body>
+</html>
