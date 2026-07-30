@@ -365,7 +365,7 @@
     <h2>Get a Free Quote</h2>
     
     <div class="form-container">
-      <form name="contact" method="POST" netlify>
+      <form name="contact" method="POST" netlify netlify-honeypot="bot-field" action="/thank-you.html">
         <div class="form-group">
           <label for="name">Full Name</label>
           <input type="text" id="name" name="name" required>
